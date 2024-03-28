@@ -44,4 +44,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function createUser($data)
+    {
+        return $this->create($data);
+    }
 }
