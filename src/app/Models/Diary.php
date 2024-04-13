@@ -9,6 +9,8 @@ class Diary extends Model
 {
     use HasFactory;
 
+    const PAGINATION_COUNT = 15;
+
     protected $fillable = [
         'user_id',
         'title',
@@ -19,5 +21,10 @@ class Diary extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getAllDiaries($userId)
+    {
+        return $this->where('user_id', $userId)->latest()->paginate(self::PAGINATION_COUNT);
     }
 }
