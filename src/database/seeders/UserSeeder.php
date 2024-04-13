@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Diary;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->count(10)->create();
+        $user = User::factory()->count(10)->create();
+        Diary::factory(50)->recycle($user)->create();
     }
 }
